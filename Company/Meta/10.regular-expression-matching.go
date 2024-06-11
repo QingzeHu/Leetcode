@@ -12,7 +12,7 @@ func isMatch(s string, p string) bool {
 		dp[i] = make([]bool, n+1)
 	}
 	dp[0][0] = true
-	for i := 1; i <= n; i++ {
+  for i := 1; i <= n; i++ {
 		if p[i-1] == '*' {
 			dp[0][i] = dp[0][i-2]
 		}
@@ -29,7 +29,9 @@ func isMatch(s string, p string) bool {
 			}
 		}
 	}
+
 	return dp[m][n]
+
 }
 
 // @lc code=end
