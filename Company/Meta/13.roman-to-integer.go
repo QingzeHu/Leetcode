@@ -20,7 +20,7 @@ func romanToInt(s string) int {
 		sum += rm[s[i]]
 		if i != 0 {
 			if rm[s[i-1]] < rm[s[i]] {
-				sum -= rm[s[i-1]] * 2
+				sum -= 2 * rm[s[i-1]]
 			}
 		}
 	}
