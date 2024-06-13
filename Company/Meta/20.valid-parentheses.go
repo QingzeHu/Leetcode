@@ -6,10 +6,10 @@
 
 // @lc code=start
 func isValid(s string) bool {
-	stack := make([]rune, 0)
-	runeMap := map[rune]rune{')': '(', ']': '[', '}': '{'}
+	stack := []rune{}
+	sMap := map[rune]rune{')': '(', ']': '[', '}': '{'}
 	for _, c := range s {
-		if left, ok := runeMap[c]; ok {
+		if left, ok := sMap[c]; ok {
 			topElement := '#'
 			if len(stack) != 0 {
 				topElement, stack = stack[len(stack)-1], stack[0:len(stack)-1]

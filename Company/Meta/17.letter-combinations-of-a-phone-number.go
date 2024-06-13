@@ -9,7 +9,8 @@ func letterCombinations(digits string) []string {
 	if digits == "" {
 		return []string{}
 	}
-	phoneMap := []string{
+	ans := []string{}
+	rm := []string{
 		"abc",
 		"def",
 		"ghi",
@@ -19,20 +20,19 @@ func letterCombinations(digits string) []string {
 		"tuv",
 		"wxyz",
 	}
-	var output []string
-	var trackback func(combination, nextDigits string)
-	trackback = func(combination, nextDigits string) {
-		if nextDigits == "" {
-			output = append(output, combination)
+	var trackback func(combination, nextDegits string)
+	trackback = func(combination, nextDegits string) {
+		if nextDegits == "" {
+			ans = append(ans, combination)
 		} else {
-			letters := phoneMap[nextDigits[0]-'2']
-			for _, letter := range letters {
-				trackback(combination+string(letter), nextDigits[1:])
+			letters := rm[nextDegits[0]-'2']
+			for i := 0; i < len(letters); i++ {
+				trackback(combination+string(letters[i]), nextDegits[1:])
 			}
 		}
 	}
 	trackback("", digits)
-	return output
+	return ans
 }
 
 // @lc code=end
