@@ -16,11 +16,10 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	amonut := len(lists)
 	interval := 1
 	for interval < amonut {
-		for i := 0; i < amonut-interval; i += interval * 2 {
-			lists[i] = merge2Lists(lists[i], lists[i+interval])
+		for i := 0; i < amonut-interval; i += 2 * interval {
+			lists[i] = merge2Lists(lists[i], lists[interval+i])
 		}
 		interval *= 2
-
 	}
 	if amonut > 0 {
 		return lists[0]
