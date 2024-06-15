@@ -7,7 +7,7 @@
 // @lc code=start
 func romanToInt(s string) int {
 	sum := 0
-	sybolmap := map[byte]int{
+	rm := map[byte]int{
 		'I': 1,
 		'V': 5,
 		'X': 10,
@@ -17,10 +17,10 @@ func romanToInt(s string) int {
 		'M': 1000,
 	}
 	for i := 0; i < len(s); i++ {
-		sum += sybolmap[s[i]]
+		sum += rm[s[i]]
 		if i != 0 {
-			if sybolmap[s[i-1]] < sybolmap[s[i]] {
-				sum -= 2 * sybolmap[s[i-1]]
+			if rm[s[i-1]] < rm[s[i]] {
+				sum -= 2 * rm[s[i-1]]
 			}
 		}
 	}
