@@ -13,44 +13,47 @@
  * }
  */
 func reverseKGroup(head *ListNode, k int) *ListNode {
-	if head == nil || k == 1 {
+	point, ktail := head, &ListNode{}
+	var newHead *ListNode = nil
+	for point != nil {
+		count := 0
+		point = head
+		for count < k && point != nil {
+			point = point.Next
+			count++
+		}
+		if count == k {
+			revHead := reverseLinkedList(head, k)
+			if newHead == nil {
+				newHead = revHead
+			}
+			if ktail != nil {
+				ktail.Next = revHead
+			}
+			ktail = head
+			head = point
+		}
+	}
+	if ktail != nil {
+		ktail.Next = head
+	}
+	if newHead == nil {
 		return head
+	} else {
+		return newHead
 	}
-
-	dummy := &ListNode{0, head}
-	prevGroupEnd := dummy
-
-	for {
-		kth := getKthNode(prevGroupEnd, k)
-		if kth == nil {
-			break
-		}
-		nextGroupStart := kth.Next
-
-		// Reverse k nodes
-		prev, curr := kth.Next, prevGroupEnd.Next
-		for curr != nextGroupStart {
-			temp := curr.Next
-			curr.Next = prev
-			prev = curr
-			curr = temp
-		}
-
-		// Connect with the previous part
-		temp := prevGroupEnd.Next
-		prevGroupEnd.Next = kth
-		prevGroupEnd = temp
-	}
-
-	return dummy.Next
 }
 
-func getKthNode(curr *ListNode, k int) *ListNode {
-	for curr != nil && k > 0 {
-		curr = curr.Next
+func reverseLinkedList(head *ListNode, k int) *ListNode {
+	var newHead, point *ListNode = nil, head
+	for k > 0 {
+		nextNode := point.Next
+		point.Next = newHead
+		newHead = point
+		point = nextNode
 		k--
 	}
-	return curr
+	return newHead
 }
 
 // @lc code=end
