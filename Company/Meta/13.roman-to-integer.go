@@ -6,7 +6,7 @@
 
 // @lc code=start
 func romanToInt(s string) int {
-	sum := 0
+	ans := 0
 	rm := map[byte]int{
 		'I': 1,
 		'V': 5,
@@ -17,14 +17,12 @@ func romanToInt(s string) int {
 		'M': 1000,
 	}
 	for i := 0; i < len(s); i++ {
-		sum += rm[s[i]]
-		if i != 0 {
-			if rm[s[i-1]] < rm[s[i]] {
-				sum -= 2 * rm[s[i-1]]
-			}
+		ans += rm[s[i]]
+		if i > 0 && rm[s[i-1]] < rm[s[i]] {
+			ans -= 2 * rm[s[i-1]]
 		}
 	}
-	return sum
+	return ans
 }
 
 // @lc code=end

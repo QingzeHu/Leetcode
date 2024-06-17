@@ -7,12 +7,7 @@
 // @lc code=start
 func isValid(s string) bool {
 	stack := []rune{}
-	sm := map[rune]rune{
-		')': '(',
-		']': '[',
-		'}': '{',
-	}
-
+	sm := map[rune]rune{')': '(', '}': '{', ']': '['}
 	for _, c := range s {
 		if left, ok := sm[c]; ok {
 			topElement := '#'
