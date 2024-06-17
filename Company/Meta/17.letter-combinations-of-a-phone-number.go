@@ -9,23 +9,21 @@ func letterCombinations(digits string) []string {
 	if digits == "" {
 		return []string{}
 	}
-	numbers := []string{
-		"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz",
-	}
-	combinations := []string{}
+	ans := []string{}
+	nm := []string{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
 	var backtrack func(combination string, nextDigits string)
 	backtrack = func(combination string, nextDigits string) {
-		if nextDigits == "" {
-			combinations = append(combinations, combination)
+		if len(nextDigits) == 0 {
+			ans = append(ans, combination)
 		} else {
-			for _, letter := range numbers[nextDigits[0]-'2'] {
-				backtrack(combination+string(letter), nextDigits[1:])
+			letters := nm[nextDigits[0]-'2']
+			for i := 0; i < len(letters); i++ {
+				backtrack(combination+string(letters[i]), nextDigits[1:])
 			}
 		}
-
 	}
 	backtrack("", digits)
-	return combinations
+	return ans
 }
 
 // @lc code=end

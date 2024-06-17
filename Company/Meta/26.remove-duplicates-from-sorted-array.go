@@ -7,9 +7,9 @@
 // @lc code=start
 func removeDuplicates(nums []int) int {
 	write := 1
-	for r := 1; r < len(nums); r++ {
-		if nums[r] != nums[r-1] {
-			nums[write] = nums[r]
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != nums[i-1] {
+			nums[write] = nums[i]
 			write++
 		}
 	}
