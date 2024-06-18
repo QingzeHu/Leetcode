@@ -23,7 +23,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 			count++
 		}
 		if count == k {
-			revHead := reverseLinkedList(head, k)
+			revHead := reversList(head, k)
 			if newHead == nil {
 				newHead = revHead
 			}
@@ -44,7 +44,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	}
 }
 
-func reverseLinkedList(head *ListNode, k int) *ListNode {
+func reversList(head *ListNode, k int) *ListNode {
 	var newHead, point *ListNode = nil, head
 	for k > 0 {
 		nextNode := point.Next
