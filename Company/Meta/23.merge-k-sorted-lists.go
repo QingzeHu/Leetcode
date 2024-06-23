@@ -13,23 +13,23 @@
  * }
  */
 func mergeKLists(lists []*ListNode) *ListNode {
+	amount := len(lists)
 	interval := 1
-	amonut := len(lists)
-	for interval < amonut {
-		for i := 0; i < amonut-interval; i += interval * 2 {
+	for interval < amount {
+		for i := 0; i < amount-interval; i += interval * 2 {
 			lists[i] = merge2Lists(lists[i], lists[i+interval])
 		}
 		interval *= 2
 	}
-	if amonut != 0 {
+	if amount > 0 {
 		return lists[0]
 	}
 	return nil
 }
 
 func merge2Lists(l1, l2 *ListNode) *ListNode {
-	head := &ListNode{}
-	point := head
+	dummyHead := &ListNode{}
+	point := dummyHead
 	for l1 != nil && l2 != nil {
 		if l1.Val <= l2.Val {
 			point.Next = l1
@@ -45,7 +45,7 @@ func merge2Lists(l1, l2 *ListNode) *ListNode {
 	} else {
 		point.Next = l1
 	}
-	return head.Next
+	return dummyHead.Next
 }
 
 // @lc code=end
