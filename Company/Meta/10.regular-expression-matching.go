@@ -8,13 +8,13 @@
 func isMatch(s string, p string) bool {
 	m, n := len(s), len(p)
 	dp := make([][]bool, m+1)
-	for i := 0; i < m+1; i++ {
+	for i, _ := range dp {
 		dp[i] = make([]bool, n+1)
 	}
 	dp[0][0] = true
-	for j := 1; j < n+1; j++ {
-		if p[j-1] == '*' {
-			dp[0][j] = dp[0][j-2]
+	for i := 1; i < n+1; i++ {
+		if p[i-1] == '*' {
+			dp[0][i] = dp[0][i-2]
 		}
 	}
 	for i := 1; i < m+1; i++ {
@@ -24,7 +24,7 @@ func isMatch(s string, p string) bool {
 			} else if p[j-1] == '*' {
 				dp[i][j] = dp[i][j-2]
 				if p[j-2] == '.' || s[i-1] == p[j-2] {
-					dp[i][j] = dp[i-1][j] || dp[i][j-2]
+					dp[i][j] = dp[i][j-2] || dp[i-1][j]
 				}
 			}
 		}

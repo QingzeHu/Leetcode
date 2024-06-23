@@ -19,7 +19,7 @@ func search(nums []int, target int) int {
 				left = mid + 1
 			}
 		} else {
-			if nums[right] >= target && target > nums[mid] {
+			if target > nums[mid] && target <= nums[right] {
 				left = mid + 1
 			} else {
 				right = mid - 1

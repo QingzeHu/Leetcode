@@ -7,13 +7,13 @@
 // @lc code=start
 func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
-	l := len(nums)
-	ans := make([][]int, 0)
-	for i := 0; i < len(nums)-2 && nums[i] <= 0; i++ {
-		if i != 0 && nums[i-1] == nums[i] {
+	ln := len(nums)
+	ans := [][]int{}
+	for i := 0; i < ln-2 && nums[i] <= 0; i++ {
+		if i != 0 && nums[i] == nums[i-1] {
 			continue
 		}
-		j, k := i+1, l-1
+		j, k := i+1, ln-1
 		for j < k {
 			sum := nums[i] + nums[j] + nums[k]
 			if sum > 0 {
@@ -22,8 +22,8 @@ func threeSum(nums []int) [][]int {
 				j++
 			} else {
 				ans = append(ans, []int{nums[i], nums[j], nums[k]})
-				k--
 				j++
+				k--
 				for j < k && nums[j-1] == nums[j] {
 					j++
 				}
