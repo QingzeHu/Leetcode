@@ -14,7 +14,7 @@
  * }
  */
 
-type ColumnNode struct {
+type NodeCol struct {
 	node *TreeNode
 	col  int
 }
@@ -23,35 +23,34 @@ func verticalOrder(root *TreeNode) [][]int {
 	if root == nil {
 		return [][]int{}
 	}
-	columnTable := map[int][]int{}
+	nodeTable := map[int][]int{}
 	minCol, maxCol := 0, 0
-	queue := []ColumnNode{{root, 0}}
-	for len(queue) > 0 {
+	queue := []NodeCol{{root, 0}}
+
+	for len(queue) != 0 {
 		currentNode := queue[0]
+		// dequeue
 		queue = queue[1:]
+		node := currentNode.node
+		col := currentNode.col
+		nodeTable[col] = append(nodeTable[col], node.Val)
 
-		currentCol := currentNode.col
-		currentVal := currentNode.node.Val
-		columnTable[currentCol] = append(columnTable[currentCol], currentVal)
-
-		if currentCol < minCol {
-			minCol = currentCol
+		if col < minCol {
+			minCol = col
 		}
-		if currentCol > maxCol {
-			maxCol = currentCol
+		if col > maxCol {
+			maxCol = col
 		}
-
-		if currentNode.node.Left != nil {
-			queue = append(queue, ColumnNode{currentNode.node.Left, currentCol - 1})
+		if node.Left != nil {
+			queue = append(queue, NodeCol{node.Left, col - 1})
 		}
-		if currentNode.node.Right != nil {
-			queue = append(queue, ColumnNode{currentNode.node.Right, currentCol + 1})
+		if node.Right != nil {
+			queue = append(queue, NodeCol{node.Right, col + 1})
 		}
 	}
-
 	result := [][]int{}
 	for i := minCol; i <= maxCol; i++ {
-		if vals, ok := columnTable[i]; ok {
+		if vals, ok := nodeTable[i]; ok {
 			result = append(result, vals)
 		}
 	}
