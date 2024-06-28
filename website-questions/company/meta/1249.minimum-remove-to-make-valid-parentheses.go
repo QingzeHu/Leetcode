@@ -23,9 +23,9 @@ func minRemoveToMakeValid(s string) string {
 		chars[index] = 0
 	}
 	result := ""
-	for _, char := range chars {
-		if char != 0 {
-			result += string(char)
+	for i := 0; i < len(chars); i++ {
+		if chars[i] != 0 {
+			result += string(chars[i])
 		}
 	}
 	return result
