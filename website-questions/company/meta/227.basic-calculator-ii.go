@@ -6,11 +6,10 @@
 
 // @lc code=start
 func calculate(s string) int {
-	n := len(s)
 	stack := []int{0}
-	op := '+'
 	num := 0
-
+	n := len(s)
+	op := '+'
 	for i := 0; i < n; i++ {
 		currnCh := s[i]
 		if currnCh >= '0' && currnCh <= '9' {
@@ -32,11 +31,11 @@ func calculate(s string) int {
 			num = 0
 		}
 	}
-	res := 0
-	for _, val := range stack {
-		res += val
+	result := 0
+	for _, num := range stack {
+		result += num
 	}
-	return res
+	return result
 }
 
 // @lc code=end

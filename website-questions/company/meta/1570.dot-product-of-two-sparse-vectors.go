@@ -22,9 +22,9 @@ func Constructor(nums []int) SparseVector {
 // Return the dotProduct of two sparse vectors
 func (this *SparseVector) dotProduct(vec SparseVector) int {
 	result := 0
-	for i, v := range this.elements {
-		if v2, ok := vec.elements[i]; ok {
-			result += v * v2
+	for i, e := range vec.elements {
+		if v2, ok := this.elements[i]; ok {
+			result += v2 * e
 		}
 	}
 	return result

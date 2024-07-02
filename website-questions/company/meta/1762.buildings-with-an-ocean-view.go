@@ -14,10 +14,9 @@ func findBuildings(heights []int) []int {
 			maxHeight = heights[i]
 		}
 	}
-
 	result2 := make([]int, len(result))
-	for i, v := range result {
-		result2[len(result)-i-1] = v
+	for i, h := range result {
+		result2[len(result)-i-1] = h
 	}
 	return result2
 }
