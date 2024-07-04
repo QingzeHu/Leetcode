@@ -13,7 +13,6 @@
  *     Right *TreeNode
  * }
  */
-
 type NodeCol struct {
 	node *TreeNode
 	col  int
@@ -27,28 +26,27 @@ func verticalOrder(root *TreeNode) [][]int {
 	queue := []NodeCol{{root, 0}}
 	minCol, maxCol := 0, 0
 	for len(queue) != 0 {
-		currentNode := queue[0]
-		// dequeue
+		currNode := queue[0].node
+		currCol := queue[0].col
 		queue = queue[1:]
-		currVal := currentNode.node.Val
-		currCol := currentNode.col
 
-		colTable[currCol] = append(colTable[currCol], currVal)
+		colTable[currCol] = append(colTable[currCol], currNode.Val)
 
 		if currCol < minCol {
 			minCol = currCol
 		}
+
 		if currCol > maxCol {
 			maxCol = currCol
 		}
-		if currentNode.node.Left != nil {
-			queue = append(queue, NodeCol{currentNode.node.Left, currCol - 1})
+
+		if currNode.Left != nil {
+			queue = append(queue, NodeCol{currNode.Left, currCol - 1})
 		}
-		if currentNode.node.Right != nil {
-			queue = append(queue, NodeCol{currentNode.node.Right, currCol + 1})
+		if currNode.Right != nil {
+			queue = append(queue, NodeCol{currNode.Right, currCol + 1})
 		}
 	}
-
 	result := [][]int{}
 	for i := minCol; i <= maxCol; i++ {
 		if vals, ok := colTable[i]; ok {

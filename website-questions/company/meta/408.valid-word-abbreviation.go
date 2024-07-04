@@ -18,16 +18,15 @@ func validWordAbbreviation(word string, abbr string) bool {
 		if abbr[j] <= '0' || abbr[j] > '9' {
 			return false
 		}
-
-		numberString := ""
+		numStr := ""
 		for j < n && abbr[j] >= '0' && abbr[j] <= '9' {
-			numberString += string(abbr[j])
+			numStr += string(abbr[j])
 			j++
 		}
-		number, _ := strconv.Atoi(numberString)
-		i += number
+		numb, _ := strconv.Atoi(numStr)
+		i += numb
 	}
-	return i == m && j == n
+	return m == i && j == n
 }
 
 // @lc code=end
