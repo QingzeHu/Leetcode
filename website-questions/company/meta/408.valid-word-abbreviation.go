@@ -26,7 +26,8 @@ func validWordAbbreviation(word string, abbr string) bool {
 		numb, _ := strconv.Atoi(numStr)
 		i += numb
 	}
-	return m == i && j == n
+	return i == m && j == n
+
 }
 
 // @lc code=end

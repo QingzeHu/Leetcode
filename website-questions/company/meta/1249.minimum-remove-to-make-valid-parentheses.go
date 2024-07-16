@@ -12,7 +12,7 @@ func minRemoveToMakeValid(s string) string {
 		if char == '(' {
 			stack = append(stack, i)
 		} else if char == ')' {
-			if len(stack) > 0 {
+			if len(stack) != 0 {
 				stack = stack[:len(stack)-1]
 			} else {
 				chars[i] = 0
