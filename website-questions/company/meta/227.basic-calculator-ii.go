@@ -32,8 +32,8 @@ func calculate(s string) int {
 		}
 	}
 	result := 0
-	for _, num := range stack {
-		result += num
+	for _, v := range stack {
+		result += v
 	}
 	return result
 }

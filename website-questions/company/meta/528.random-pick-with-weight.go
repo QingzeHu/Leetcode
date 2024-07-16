@@ -6,8 +6,8 @@
 
 // @lc code=start
 type Solution struct {
-	prefixsums []int
-	totalsum   int
+	prefixSums []int
+	totalSum   int
 }
 
 func Constructor(w []int) Solution {
@@ -20,9 +20,9 @@ func Constructor(w []int) Solution {
 }
 
 func (this *Solution) PickIndex() int {
-	target := rand.Intn(this.totalsum) + 1
-	return sort.Search(len(this.prefixsums), func(i int) bool {
-		return this.prefixsums[i] >= target
+	target := rand.Intn(this.totalSum) + 1
+	return sort.Search(len(this.prefixSums), func(i int) bool {
+		return this.prefixSums[i] >= target
 	})
 }
 
