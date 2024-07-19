@@ -17,7 +17,6 @@ func validPalindrome(s string) bool {
 		return true
 	}
 	left, right := 0, len(s)-1
-
 	for left < right {
 		if s[left] != s[right] {
 			return isPalindrome(s, left+1, right) || isPalindrome(s, left, right-1)

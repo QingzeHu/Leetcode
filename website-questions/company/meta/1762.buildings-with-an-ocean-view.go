@@ -15,8 +15,8 @@ func findBuildings(heights []int) []int {
 		}
 	}
 	result2 := make([]int, len(result))
-	for i, h := range result {
-		result2[len(result)-i-1] = h
+	for i, v := range result {
+		result2[len(result)-i-1] = v
 	}
 	return result2
 }

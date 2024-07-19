@@ -11,12 +11,12 @@ type Solution struct {
 }
 
 func Constructor(w []int) Solution {
-	sums := make([]int, len(w))
-	sums[0] = w[0]
+	s := make([]int, len(w))
+	s[0] = w[0]
 	for i := 1; i < len(w); i++ {
-		sums[i] = sums[i-1] + w[i]
+		s[i] = s[i-1] + w[i]
 	}
-	return Solution{sums, sums[len(sums)-1]}
+	return Solution{s, s[len(s)-1]}
 }
 
 func (this *Solution) PickIndex() int {
