@@ -8,7 +8,6 @@
 func validWordAbbreviation(word string, abbr string) bool {
 	m, n := len(word), len(abbr)
 	i, j := 0, 0
-
 	for i < m && j < n {
 		if word[i] == abbr[j] {
 			i++
@@ -23,11 +22,10 @@ func validWordAbbreviation(word string, abbr string) bool {
 			numStr += string(abbr[j])
 			j++
 		}
-		numb, _ := strconv.Atoi(numStr)
-		i += numb
+		num, _ := strconv.Atoi(numStr)
+		i += num
 	}
 	return i == m && j == n
-
 }
 
 // @lc code=end

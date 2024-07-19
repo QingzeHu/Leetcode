@@ -8,10 +8,10 @@
 func minRemoveToMakeValid(s string) string {
 	stack := []int{}
 	chars := []rune(s)
-	for i, char := range chars {
-		if char == '(' {
+	for i, v := range chars {
+		if v == '(' {
 			stack = append(stack, i)
-		} else if char == ')' {
+		} else if v == ')' {
 			if len(stack) != 0 {
 				stack = stack[:len(stack)-1]
 			} else {
@@ -19,8 +19,8 @@ func minRemoveToMakeValid(s string) string {
 			}
 		}
 	}
-	for _, index := range stack {
-		chars[index] = 0
+	for i := 0; i < len(stack); i++ {
+		chars[stack[i]] = 0
 	}
 	result := ""
 	for i := 0; i < len(chars); i++ {
@@ -28,6 +28,7 @@ func minRemoveToMakeValid(s string) string {
 			result += string(chars[i])
 		}
 	}
+
 	return result
 }
 
